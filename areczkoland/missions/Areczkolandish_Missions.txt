@@ -33,14 +33,28 @@ areczkolandish_independance = {
 				}
 				AND = {
 					OR = {
-						has_opinion = {
-							who = PLC
-							value = 150
+						POL = {
+							has_opinion = {
+								who = ROOT
+								value = 150
+							}
 						}
-						has_opinion = {
-							who = POL
-							value = 150
+						PLC = { 
+							has_opinion = {
+								who = ROOT
+								value = 150
+							}
 						}
+					}
+					OR = {
+						owes_favors = { 
+							who = POL 
+							value = 10 
+				   		}
+						owes_favors = { 
+							who = PLC 
+							value = 10 
+				   		}
 					}
 					army_size_percentage = 0.8
 				}
@@ -49,39 +63,54 @@ areczkolandish_independance = {
 		effect = {
 			if = {
 				limit = {
-					has_country_flag = supported_prussian_confederation_flag
-					exists = DNZ
-					DNZ = {
-						is_subject = no
-						is_at_war = no
-						NOT = { total_development = 100 }
+					exists = MOL
+					MOL = {
+						is_subject = yes
 					}
 				}
-				country_event = { id = flavor_teu.3 }
-				custom_tooltip = vassalize_danzig_tooltip
-			}
-			else_if = {
-				limit = {
-					any_subject_country = {
-						any_owned_province = {
-							area = west_prussia_area
-						}
+				MOL = {
+					grant_independence = yes
+					add_opinion = {
+						who = ROOT
+						years = 20
+					}
+					add_favours = {
+						who = ROOT
+						amount = 50
 					}
 				}
-				west_prussia_area = {
-					limit = {
-						NOT = { is_core = ROOT	}
-					}
+				moldavia_area = {
 					add_core = ROOT
 				}
 			}
-			else = {
-				west_prussia_area = {
-					limit = {
-						NOT = { is_permanent_claim = ROOT	}
-						NOT = { is_core = ROOT	}
+			else_if = {
+				limit = {
+					exists = MOL
+					MOL = {
+						is_subject = no
 					}
+				}
+				vassalize = MOL
+				moldavia_area = {
 					add_permanent_claim = ROOT
+				}
+				MOL = {
+					add_opinion = {
+					who = ROOT
+					years = 20
+					}
+				}
+			}
+			else = {
+				release = MOL
+				MOL = {
+					add_favours = {
+						who = ROOT
+						amount = 100
+					}
+				}
+				moldavia_area = {
+					add_core = ROOT
 				}
 			}
 			kuyavia_area = {
