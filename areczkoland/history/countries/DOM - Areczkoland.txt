@@ -10,7 +10,6 @@ capital = 2961 # Lwow
 fixed_capital = 2961 # AI cannot move capital, Cost no-power to move capital to it
 add_accepted_culture = ruthenian
 add_accepted_culture = lithuanian
-add_accepted_culture = romanian
 add_truce_with = TUR
 
 

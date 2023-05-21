@@ -50,13 +50,9 @@ areczkolandish_independance = {
 						limit = {
 							has_dlc = "The Cossacks"
 						}
-						OR = {
+						overlord = {
 							owes_favors = { 
-								who = POL 
-								value = 10 
-				   			}
-							owes_favors = { 
-								who = PLC 
+								who = ROOT 
 								value = 10 
 				   			}
 						}
@@ -123,13 +119,121 @@ areczkolandish_independance = {
 					}
 				}
 			}
-			#kuyavia_area = {
-			#	limit = {
-			#		NOT = { is_permanent_claim = ROOT	}
-			#		NOT = { is_core = ROOT	}
-			#	}
-			#	add_permanent_claim = ROOT
-			#}
+		}
+	}
+
+	integrate_with_romanian_brothers = {
+		icon = integrate_with_romanian_brothers_dom
+		required_missions = { expand_land_dom }
+		completed_by = 1484.7.10
+		position = 2
+		trigger = {
+			if = {
+				limit = {
+					exists = MOL
+					MOL = {
+						is_subject = yes
+						is_subject_of = ROOT
+					}
+				}
+				moldavia_area = {
+					num_of_time_improved = 15
+				}
+				MOL = {
+					has_opinion = {
+						who = ROOT
+						value = 190
+					}
+				}
+				army_size = MOL
+			}
+			else_if = {
+				limit = {
+					exists = MOL
+					MOL = {
+						is_subject = yes
+						NOT = { is_subject_of = ROOT }
+					}
+				}
+				MOL = {
+					has_opinion = {
+						who = ROOT
+						value = 190
+					}
+					overlord = {
+						has_opinion = {
+							who = ROOT
+							value = 100
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_dlc = "The Cossacks"
+					}
+					MOL = {
+						overlord = {
+							owes_favors = {
+								who = ROOT 
+								value = 10
+							}
+						}
+					}
+				}
+				army_size = MOL
+			}
+			else_if = {
+				limit = {
+					exists = MOL
+					MOL = {
+						is_subject = no
+					}
+				}
+				MOL = {
+					has_opinion = {
+						who = ROOT
+						value = 190
+					}
+					treasury = 250
+				}
+				army_size = MOL
+				if = {
+					limit = {
+						has_dlc = "The Cossacks"
+					}
+					MOL = {
+						trust = { 
+							who = ROOT 
+							value = 80
+						}
+					}
+				}
+			}
+			else = {
+				moldavia_area = {
+					type = all
+					owned_by = ROOT
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					exists = MOL
+				}
+				inherit = MOL
+				moldavia_area = {
+					add_local_autonomy = -10
+				}
+				add_accepted_culture = romanian
+			}
+			else {
+				moldavia_area = {
+					add_core = ROOT
+					add_local_autonomy = -5
+				}
+				add_accepted_culture = romanian
+			}
 		}
 	}
 

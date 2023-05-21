@@ -594,9 +594,13 @@ spriteTypes = {
 		texturefile = "gfx/interface/missions/mission_unknown_mission.dds"
 	}
 
-
+#Areczkoland mod
 	spriteType = {
 		name = "expand_land_dom"
 		texturefile = "gfx/interface/missions/expand_land_dom.dds"
+	}
+	spriteType = {
+		name = "integrate_with_romanian_brothers_dom"
+		texturefile = "gfx/interface/missions/integrate_with_romanian_brothers_dom.dds"
 	}
 }
