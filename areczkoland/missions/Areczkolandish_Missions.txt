@@ -9,8 +9,8 @@ areczkolandish_independance = {
 	}
 	has_country_shield = yes
 	
-	indepedance_from_pol = {
-		icon = mission_alliances
+	expand_land_dom = {
+		icon = expand_land_dom
 		required_missions = { }
 		completed_by = 1466.10.19
 		trigger = {
@@ -46,15 +46,20 @@ areczkolandish_independance = {
 							}
 						}
 					}
-					OR = {
-						owes_favors = { 
-							who = POL 
-							value = 10 
-				   		}
-						owes_favors = { 
-							who = PLC 
-							value = 10 
-				   		}
+					if = {
+						limit = {
+							has_dlc = "The Cossacks"
+						}
+						OR = {
+							owes_favors = { 
+								who = POL 
+								value = 10 
+				   			}
+							owes_favors = { 
+								who = PLC 
+								value = 10 
+				   			}
+						}
 					}
 					army_size_percentage = 0.8
 				}
@@ -72,7 +77,7 @@ areczkolandish_independance = {
 					grant_independence = yes
 					add_opinion = {
 						who = ROOT
-						years = 20
+						modifier = areczkolandish_help
 					}
 					add_favours = {
 						who = ROOT
@@ -93,33 +98,38 @@ areczkolandish_independance = {
 				vassalize = MOL
 				moldavia_area = {
 					add_permanent_claim = ROOT
+					add_base_tax = 1
 				}
 				MOL = {
 					add_opinion = {
-					who = ROOT
-					years = 20
+						who = ROOT
+					 	modifier = areczkolandish_help
 					}
 				}
 			}
 			else = {
-				release = MOL
+				moldavia_area = {
+					cede_province = MOL
+					add_core = ROOT
+				}
 				MOL = {
 					add_favours = {
 						who = ROOT
 						amount = 100
 					}
-				}
-				moldavia_area = {
-					add_core = ROOT
+					add_opinion = {
+						who = ROOT
+						modifier = areczkolandish_help
+					}
 				}
 			}
-			kuyavia_area = {
-				limit = {
-					NOT = { is_permanent_claim = ROOT	}
-					NOT = { is_core = ROOT	}
-				}
-				add_permanent_claim = ROOT
-			}
+			#kuyavia_area = {
+			#	limit = {
+			#		NOT = { is_permanent_claim = ROOT	}
+			#		NOT = { is_core = ROOT	}
+			#	}
+			#	add_permanent_claim = ROOT
+			#}
 		}
 	}
 
